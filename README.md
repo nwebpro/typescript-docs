@@ -62,7 +62,9 @@ const result1 = createArray<ICountry>(
 
 ## Constraints in Generics
 ```tsx
-// extends er maddome apni bole dite parben je ai value gula chara onno kono value accept korbe na ai function a tar jonno apnake extends kore type bole dite hobe niche example dewa ace.
+// extends er maddome apni bole dite parben je ai value gula chara onno kono value 
+// accept korbe na ai function a tar jonno apnake extends kore type bole dite hobe 
+// niche example dewa ace.
 
 // My Info Type
 type MyInfoType = {
@@ -166,4 +168,37 @@ const getTodoData async(): Promise<void> => {
     const result = await getData()
 }
 getTodoData()
+```
+
+## Conditional Types
+```tsx
+// a type is dependent on another type
+type a = null
+type c = undefined
+type d = number
+type b = a extends string ? string : null
+
+// Nested Conditional rendering type
+type e = a extends null 
+    ? null 
+    : c extends null 
+    ? undefined 
+    : d extends null 
+    ? number 
+    : null
+
+type SheikhType = {
+    wife1: string,
+    wife2: string
+}
+type CheckProperty<T, K> = T extends keyof SheikhType ? true : false
+type CheckWife = CheckProperty<SheikhType, 'wife1'> 
+
+// Matha Kharap Kora Example
+type Bandhubi = 'Fatema' | 'Tanjia' | 'Tisa'
+type RemoveBandhubi<T, R> = T extends R ? never : T
+type CurrentBandhubi = RemoveBandhubi<Bandhubi, 'Fatema'>
+
+// Output
+type CurrentBandhubi = 'Tanjia' | 'Tisa'
 ```
