@@ -202,3 +202,70 @@ type CurrentBandhubi = RemoveBandhubi<Bandhubi, 'Fatema'>
 // Output
 type CurrentBandhubi = 'Tanjia' | 'Tisa'
 ```
+
+# Module 4 Typescript
+
+## How to Create Class, Object , Parameter Properties
+```tsx
+// Create Class
+class Person {
+    // Parameter Properties 
+    //[perameter property er maddome amra constructor er moddhe 
+    //parameter declare kore ek sathe public, private, 
+    //protected declare korte pari tar jonno alada kore ar type bole dite hobe na]
+    constructor(public name: string, public age: number) {}
+    // Create Method [Class er moddhe function create korle take method bole]
+    public makePerson(): string {
+        console.log(`My name is ${this.name} and I am ${this.age} years old`)
+    }
+}
+const person = new Person('Sir', 24)
+person.makePerson()
+```
+## Inheritence
+```tsx
+// Inheritance
+
+// Person Class with common type and method
+class Person {
+    name: string;
+    age: number;
+    address: string;
+
+    constructor(name: string, age: number, address: string) {
+        this.name = name;
+        this.age = age;
+        this.address = address;
+    }
+
+    makeSleep(hours: number): string {
+        return `This ${this.name} will sleep for ${hours} hours`
+    }
+}
+
+// Teacher Class extend by person class value and method
+class Teacher extends Person {
+    designation: string; // different property
+
+    constructor(name: string, age: number, address: string, designation: string) {
+        super(name, age, address)
+        this.designation = designation;
+    }
+
+    takeClasses(numOfClass: number): string { // different method
+        return `This ${this.name} will take ${numOfClass} classes`
+    }
+}
+const teacher1 = new Teacher('Naeem', 24, 'Dhaka', 'Web Developer')
+
+// Student Class extend by person class value and method
+class Student extends Person {
+    constructor(name: string, age: number, address: string) {
+        super(name, age, address)
+    }
+}
+const student1 = new Student('Hafiz', 24, 'Dhaka')
+
+// super use kora hoyeche karon teacher & student class parent class ke extend
+// korche tay value access korar jonno super use kora hoyeche
+```
