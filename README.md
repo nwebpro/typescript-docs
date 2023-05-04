@@ -222,6 +222,7 @@ class Person {
 const person = new Person('Sir', 24)
 person.makePerson()
 ```
+
 ## Inheritence
 ```tsx
 // Inheritance
@@ -268,4 +269,90 @@ const student1 = new Student('Hafiz', 24, 'Dhaka')
 
 // super use kora hoyeche karon teacher & student class parent class ke extend
 // korche tay value access korar jonno super use kora hoyeche
+```
+
+# Type Guards / Type Narrowing
+```tsx
+// Keyof Guard
+type AlphaNumeric = string | number;
+function add(a: AlphaNumeric, b: AlphaNumeric): AlphaNumeric {
+    if(typeof a === 'number' && typeof b === 'number') {
+        return a + b
+    }
+    return a.toString() + b.toString()
+}
+
+// In Guard
+type NormalUserType = {
+    name: string;
+}
+type AdminUserType = {
+    name: string;
+    role: 'admin';
+}
+
+function getUser(user: NormalUserType | AdminUserType): string {
+    if('role' in user) {
+        return `I'm an admin and my role is ${user.role}`
+    }
+    return `I'm a normal user`
+}
+
+const normalUser: NormalUserType = {
+    name: 'Hafiz'
+}
+const adminUser: AdminUserType = {
+    name: 'Naeem',
+    role: 'admin'
+}
+
+console.log(getUser(normalUser))
+console.log(getUser(adminUser))
+
+// instanceof Guard [class and object er moddhe guard add korar jonno use kore]
+class Animal {
+    name: string;
+    constructor(name: string) {
+        this.name = name;
+    }
+
+    makeSound(sound: string): string {
+        return `This ${this.name} will make ${sound} sound`
+    }
+}
+
+class Dog extends Animal {
+    constructor(name: string) {
+        super(name)
+    }
+    makeBark() {
+        return `${this.name} will bark`
+    }
+}
+
+class Cat extends Animal {
+    constructor(name: string) {
+        super(name)
+    }
+    makeMeow() {
+        return `${this.name} will meow`
+    }
+}
+
+function getAnimal(animal: Animal): string {
+    if(animal instanceof Dog) {
+        return animal.makeBark()
+    }
+    if(animal instanceof Cat) {
+        return animal.makeMeow()
+    }
+    return animal.makeSound('some')
+}
+
+const animal1 = new Dog('Smart Dog') // instance of Dog
+const animal2 = new Cat('Cute Cat') // instance of Cat
+
+console.log(getAnimal(animal1))
+console.log(getAnimal(animal2))
+
 ```
