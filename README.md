@@ -59,3 +59,54 @@ const result1 = createArray<ICountry>(
     }
 )
 ```
+
+## Constraints in Generics
+```tsx
+// extends er maddome apni bole dite parben je ai value gula chara onno kono value accept korbe na ai function a tar jonno apnake extends kore type bole dite hobe niche example dewa ace.
+
+// My Info Type
+type MyInfoType = {
+    name: string;
+    age: number;
+    salary: number;
+}
+
+const addMeInMyCrushMind = <T extends MyInfoType> (myInfo: T) => {
+    const crush = 'Madam'
+    const newData = {
+        ...myInfo,
+        crush
+    }
+    return newData
+}
+
+const myInfo: MyInfoType = {
+    name: 'Sir',
+    age: 24,
+    salary: 100000
+}
+const result = addMeInMyCrushMind(myInfo)
+
+// Generic Constraints Using Key Of Part 1
+type PersonType = {
+    name: string;
+    age: number;
+    address: string;
+}
+
+// crate a union type using PersonType
+type PersonTypeKeys = keyof PersonType;
+const test1: PersonTypeKeys = 'name'
+
+// Advance use case with keyof union type
+function getProperty<X, Y extends keyof X>(obj: X, key: Y){
+    obj[key]
+}
+const property = getProperty(
+    {
+        name: 'Mr. X',
+        age: 24,
+    },
+    'name'
+)
+```
