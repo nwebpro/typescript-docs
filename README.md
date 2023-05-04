@@ -110,3 +110,60 @@ const property = getProperty(
     'name'
 )
 ```
+
+## Asynchronous TypeScript
+```tsx
+// Object Type Promise
+interface IDataType {
+    data: string;
+}
+const makePromise = (): Promise<IDataType> => {
+    return new Promise<IDataType>((resolve, reject) => {
+        const data: IDataType = 'Data is Updated'
+        if(data) {
+            resolve(data)
+        } else {
+            reject('Data is not Updated')
+        }
+    })
+}
+
+const getPromiseData = async(): Promise<IDataType> => {
+    const data = await makePromise()
+    return data
+}
+
+// String Type Promise
+const makePromise = (): Promise<string> => {
+    return new Promise<string>((resolve, reject) => {
+        const data: string = 'Data is Updated'
+        if(data) {
+            resolve(data)
+        } else {
+            reject('Data is not Updated')
+        }
+    })
+}
+
+const getPromiseData = async(): Promise<string> => {
+    const data = await makePromise()
+    return data
+}
+
+// Fetch json Placeholder Data 
+interface ITodo {
+    userId: number;
+    id: number;
+    title: string;
+    completed: boolean
+}
+const getData = async(): Promise<ITodo> => {
+    const response = fetach('https://jsonplaceholder.typicode.com/todos/1')
+    return data = await response.json()
+}
+
+const getTodoData async(): Promise<void> => {
+    const result = await getData()
+}
+getTodoData()
+```
