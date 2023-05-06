@@ -356,3 +356,94 @@ console.log(getAnimal(animal1))
 console.log(getAnimal(animal2))
 
 ```
+
+# Typescript Practice
+## 1 Convert the following JavaScript array into a TypeScript tuple
+```tsx
+const userInfo = [101, "Ema", "John", true,  , "2023"];
+```
+```tsx
+// Solution
+const userInfo: [number, string, string, boolean, string | undefined, string] = [101, "Ema", "John", true,  , "2023"];
+```
+
+## 2 Write a TypeScript function that takes in two arrays of numbers as parameters. The function should compare the elements in both arrays and return a new array that contains only the elements that are present in both arrays.
+```tsx
+const array1 = [1, 2, 3, 4, 5];
+const array2 = [2, 4, 6, 8, 10];
+```
+```tsx
+// Solution
+const commonElements = (arr1: number[], arr2: number[]): number[] => {
+    const common: number[] = [];
+    arr1.forEach((num) => {
+        if(arr2.includes(num)) {
+            common.push(num)
+        }
+    })
+    return common;
+}
+
+const array1 = [1, 2, 3, 4, 5, 6, 10];
+const array2 = [2, 4, 6, 8, 10];
+const result = commonElements(array1, array2);
+console.log(result);
+```
+
+## 3 You have an interface for Product, containing the product's id, name, price, and category. You want to filter an array of Products based on a specific criterion and value.
+```tsx
+// Solution
+//Write a TypeScript generic function that takes this array, a criterion ,
+// and returns a new array containing only the products that match the 
+// given criterion and value. Use a generic type parameter in the function 
+// signature to ensure type safety.
+interface Product {
+  id: number;
+  name: string;
+  price: number;
+  category: string;
+}
+
+const productsArray: Product[] = [
+  { id: 1, name: "Product 1", price: 10, category: "Mobile" },
+  { id: 2, name: "Product 2", price: 20, category: "Laptop" },
+  { id: 3, name: "Product 3", price: 30, category: "Mobile" },
+  { id: 4, name: "Product 4", price: 40, category: "Mac Book" },
+];
+
+function filterProductsByCriterion<T extends keyof Product>(
+  products: Product[],
+  criterion: T,
+  value: Product[T]
+): Product[] {
+  return productsArray.filter(product => product[criterion] === value);
+}
+
+const result = filterProductsByCriterion(products, "category", "Mobile");
+console.log(result);
+```
+
+## 4 Suppose you have an array of tuples, where each tuple represents a product and contains the product name, price, and quantity. Write a TypeScript function that calculates the total cost of all the products in the array, using a generic type for the tuple and a type alias for the array.
+```tsx
+// Solution
+type ProductTuple = [string, number, number];
+type Products = ProductTuple[];
+
+const products: Products = [
+  ["Product 1", 10, 2],
+  ["Product 2", 20, 4],
+  ["Product 3", 30, 6],
+  ["Product 4", 40, 8],
+];
+
+function calculateTotalCost(products: Products): number {
+  let total = 0;
+  products.forEach((product) => {
+    total += product[1] * product[2];
+  });
+  return total;
+}
+
+const result = calculateTotalCost(products);
+console.log(result);
+```
