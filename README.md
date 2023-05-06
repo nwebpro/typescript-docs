@@ -390,7 +390,7 @@ const result = commonElements(array1, array2);
 console.log(result);
 ```
 
-## 3 You have an interface for Product, containing the product's id, name, price, and category. You want to filter an array of Products based on a specific criterion and value.
+## 3 You have an interface for ``Product``, containing the product's id, name, price, and category. You want to filter an array of Products based on a specific criterion and value.
 ```tsx
 // Solution
 //Write a TypeScript generic function that takes this array, a criterion ,
@@ -464,4 +464,37 @@ const sumOfEvenNumbers = (numbers: number[]): number => {
 
 const result = sumOfEvenNumbers(numbers);
 console.log(result);
+```
+
+## 6 Create an interface called ``Person`` that includes properties for name (string), age (number), and email (string). Then create an array of Person objects and write a function that takes the array and a string email as parameters, and returns the Person object that matches the email or null if no match is found.
+```tsx
+// Solution
+interface Person {
+  name: string;
+  age: number;
+  email: string;
+}
+
+const people: Person[] = [
+    { name: 'Naeem', age: 25, email: 'test@gmail.com' },
+    { name: 'Rahim', age: 26, email: 'test1@gmail.com' },
+    { name: 'Karim', age: 27, email: 'test2@gmail.com' }
+]
+
+const checkPersonByEmail = (people: Person[], email: string): Person | null => {
+    let person: Person | null = null;
+    people.forEach((p) => {
+        if(p.email === email) {
+            person = p;
+        }
+    })
+    return person;
+}
+
+const result = checkPersonByEmail(people, 'test5@gmail.com');
+if(result) {
+    console.log(result);
+} else {
+    console.log('No person found');
+}
 ```
