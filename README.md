@@ -447,3 +447,21 @@ const calculateTotalCost = (products: Products): number => {
 const result = calculateTotalCost(products);
 console.log(result);
 ```
+
+## 5 Suppose you have an array of numbers in TypeScript, and you want to find the sum of all the even numbers in the array. How would you approach this problem and write code to solve it?
+```tsx
+// Solution
+const numbers: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const sumOfEvenNumbers = (numbers: number[]): number => {
+  let sum = 0;
+  numbers.forEach((num) => {
+    if (num % 2 === 0) {
+      sum += num;
+    }
+  });
+  return sum;
+};
+
+const result = sumOfEvenNumbers(numbers);
+console.log(result);
+```
