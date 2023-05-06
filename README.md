@@ -411,11 +411,11 @@ const productsArray: Product[] = [
   { id: 4, name: "Product 4", price: 40, category: "Mac Book" },
 ];
 
-function filterProductsByCriterion<T extends keyof Product>(
+const filterProductsByCriterion = <T extends keyof Product>(
   products: Product[],
   criterion: T,
   value: Product[T]
-): Product[] {
+): Product[] => {
   return productsArray.filter(product => product[criterion] === value);
 }
 
@@ -436,13 +436,13 @@ const products: Products = [
   ["Product 4", 40, 8],
 ];
 
-function calculateTotalCost(products: Products): number {
+const calculateTotalCost = (products: Products): number => {
   let total = 0;
   products.forEach((product) => {
     total += product[1] * product[2];
   });
   return total;
-}
+};
 
 const result = calculateTotalCost(products);
 console.log(result);
