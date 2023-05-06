@@ -393,7 +393,7 @@ console.log(result);
 ## 3 You have an interface for ``Product``, containing the product's id, name, price, and category. You want to filter an array of Products based on a specific criterion and value.
 ```tsx
 // Solution
-//Write a TypeScript generic function that takes this array, a criterion ,
+// Write a TypeScript generic function that takes this array, a criterion ,
 // and returns a new array containing only the products that match the 
 // given criterion and value. Use a generic type parameter in the function 
 // signature to ensure type safety.
@@ -497,4 +497,30 @@ if(result) {
 } else {
     console.log('No person found');
 }
+```
+
+## 7 Create a TypeScript program that declares an array of numbers. Use the spread  operator to pass the elements of the array as arguments to a function that finds the minimum and maximum values of the array. Use destructuring to assign the minimum and maximum values to separate variables, and log them to the console.
+```tsx
+// Solution
+const numbers: number[] = [1, 2, 3, 4, 50, 6, 7, 8, 9];
+const findMinMax = (numbers: number[]): [number, number] => {
+  return [Math.min(...numbers), Math.max(...numbers)];
+};
+
+const [min, max] = findMinMax(numbers);
+console.log(min, max);
+```
+
+## 8 Create a TypeScript program that declares a function that takes a string parameter with a literal type of ``"red", "green", or "blue"``, and an optional boolean parameter. If the boolean parameter is true, log the string parameter in uppercase. If the boolean parameter is false or not provided, log the string parameter in lowercase.
+```tsx
+// Solution
+const logColor = (colors: 'red' | 'green' | 'blue', isUpperCase?: boolean): void => {
+    if(isUpperCase) {
+        console.log(colors.toUpperCase());
+    } else {
+        console.log(colors.toLowerCase());
+    }
+}
+logColor('red', true);
+logColor('green');
 ```
